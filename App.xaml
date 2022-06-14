@@ -1,0 +1,20 @@
+﻿<Application x:Class="RAP2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:RAP2.Control"
+             StartupUri="./View/MainWindow.xaml">
+    <Application.Resources>
+        <local:ResearcherController x:Key="rController"/>
+        <ObjectDataProvider x:Key="rList"
+                            ObjectInstance="{StaticResource rController}"
+                            MethodName="ViewableList">
+        </ObjectDataProvider>
+
+        <local:PublicationsController x:Key="pControl"/>
+        <ObjectDataProvider x:Key="pList"
+                            ObjectInstance="{StaticResource pControl}"
+                            MethodName="GetViewablePubs">
+        </ObjectDataProvider>
+    </Application.Resources>
+</Application>

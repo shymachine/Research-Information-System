@@ -1,0 +1,134 @@
+﻿<Window x:Class="RAP2.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RAP2"
+        mc:Ignorable="d"
+        Title="Researcher Assessment Program" Height="auto" Width="auto" SizeToContent="WidthAndHeight"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="276*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel>
+                    <ListBox Height="208">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                            <WrapPanel Name="DetailPanel" Orientation="Vertical" Height="198" Width="534">
+                                <Label Content="Details" FontWeight="Bold"/>
+                                <Label Content="Photo"/>
+                                <Image Name="Photo" Height="60" Width="58"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Name:"/>
+                                    <Label Content="{Binding Name}" Width="100"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Title:"></Label>
+                                    <Label Content="{Binding Title}"></Label>
+                                </StackPanel>
+
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Campus:"></Label>
+                                    <Label Content="{Binding Campus}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Unit:"/>
+                                    <Label Content="{Binding Unit}" Width="100"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="E-mail:"></Label>
+                                    <Label Content="{Binding Email}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Name="degreelabel" Content="Degree:"></Label>
+                                    <Label Name="degreecontent" Content="{Binding Degree}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Current Position:"></Label>
+                                    <Label Content="{Binding JobTitle}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Commenced with Instittution:"></Label>
+                                    <Label Content="{Binding StartAtUtas}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Commenced with Current Position:"></Label>
+                                    <Label Content="{Binding JobStart}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Name="avglabel" Content="3-Year Average:"></Label>
+                                    <Label Name="avgtext" Content="{Binding ThreeyearAverage}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Name="perflabel" Content="Performance:"></Label>
+                                    <Label Name="perftext" Content="{Binding Performance}"></Label>
+                                    <Label Name="perflabel2" Content="%"></Label>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Tenure:"></Label>
+                                    <Label Content="{Binding Tenure}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Publications:"></Label>
+                                    <Label Content="{Binding PublicationCount}"></Label>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="CountCumulativeButton" Content="Cumulative Count" Click="Button_Click"></Button>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Name="supervisionslabel" Content="Supervisions:"></Label>
+                                    <Label Name="supervisionscontent" Content="{Binding SupervisionCount}"></Label>
+                                    <Button Name="SupervisionsButton" Content="Show" Click="SupervisionsButton_Click"></Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Name="supervisorlabel" Content="Supervisor:"></Label>
+                                    <Label Name="supervisorcontent" Content="{Binding Supervisor}"></Label>
+                                </StackPanel>
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+            <ListBox Name="PublicationBox" HorizontalAlignment="Left" Height="61" ItemsSource="{Binding Source={StaticResource pList}}" Margin="0,36,0,0" Grid.Row="1" VerticalAlignment="Top" Width="208" SelectionChanged="PublicationBox_SelectionChanged"/>
+
+            <Label Content="Publications" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,5.4,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <StackPanel HorizontalAlignment="Left" Height="71" Margin="10,129.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="220">
+
+                <TextBox x:Name="pubTextBlock" TextWrapping="WrapWithOverflow"  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+         ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" IsReadOnly="True" Height="61" Margin="0,0,25.8,0">
+                </TextBox>
+
+
+            </StackPanel>
+            <ListBox Name="positionList" HorizontalAlignment="Left" ItemsSource="{Binding PreviousPositions}" Height="56" Margin="276,41,0,0" Grid.Row="1" VerticalAlignment="Top" Width="178"/>
+            <Label Name="poslabel" FontWeight="Bold" Content="Previous Positions" HorizontalAlignment="Left" Margin="276,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <ListBox Name="supervisionbox" ItemsSource="{Binding Supervisions}" HorizontalAlignment="Left" Height="62" Margin="276,128,0,0" Grid.Row="1" VerticalAlignment="Top" Width="178"/>
+            <Label Name="supervisionlabel" FontWeight="Bold" Content="Supervisions" HorizontalAlignment="Left" Margin="293,102.4,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <Label x:Name="CumulativeLabel" FontWeight="Bold" Content="Cumulative" HorizontalAlignment="Left" Margin="468,5.4,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+            <ListBox Name="CumulativeList" ItemsSource="{Binding PYearCountList}" Margin="468,36.4,11,56" Grid.Row="1"/>
+            <Button Name="ReverseButton" Content="Reverse Publication List Order"  HorizontalAlignment="Left" Margin="0,102,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Click="ReverseButton_Click">
+                
+            </Button>
+
+        </Grid>
+        <Grid Grid.Column="0">
+            <ListBox x:Name="Lia" HorizontalAlignment="Left" Height="267" Margin="10,36,0,0" VerticalAlignment="Top" Width="170" SelectionChanged="ListBox_SelectionChanged" ItemsSource="{Binding Source={StaticResource rList}}"/>
+            <TextBox Name="SearchBox" HorizontalAlignment="Left" Height="23" Margin="10,327,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <Button Name="NameSearchButton" Content="Find by Name" HorizontalAlignment="Left" Margin="135,327,0,0" VerticalAlignment="Top" Width="93" Height="18" Click="NameSearchButton_Click"/>
+            <ComboBox Name="FilterCombo" HorizontalAlignment="Left" Margin="10,366,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="FilterCombo_SelectionChanged"/>
+            <Label FontWeight="Bold" Content="Filter by Level" HorizontalAlignment="Left" Margin="139,366,0,0" VerticalAlignment="Top" Width="93"/>
+            <Label Content="Researcher" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="83"/>
+
+        </Grid>
+    </Grid>
+</Window>
